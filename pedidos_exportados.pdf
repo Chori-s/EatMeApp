@@ -1,0 +1,64 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842]
+   /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 2471 >>
+stream
+BT
+/F1 10 Tf
+50 770 Td
+14 TL
+(PEDIDOS EXPORTADOS - EatMe) '
+() '
+(--------------------------------------------------) '
+(Pedido #21  |  Usuario: 9  |  Producto: Patatas Fritas  |  Cantidad: 1  |  Fecha: 2026-04-29 10:04:3...) '
+(Pedido #20  |  Usuario: 9  |  Producto: Bebida Grande  |  Cantidad: 1  |  Fecha: 2026-04-29 10:04:35...) '
+(Pedido #19  |  Usuario: 9  |  Producto: Gofraco del pueblo \(casero\)  |  Cantidad: 2  |  Fecha: 202...) '
+(Pedido #18  |  Usuario: 8  |  Producto: Patatas Fritas  |  Cantidad: 1  |  Fecha: 2026-04-28 09:30:0...) '
+(Pedido #17  |  Usuario: 8  |  Producto: Gofraco del pueblo \(casero\)  |  Cantidad: 1  |  Fecha: 202...) '
+(Pedido #16  |  Usuario: 8  |  Producto: Gofraco del pueblo \(casero\)  |  Cantidad: 1  |  Fecha: 202...) '
+(Pedido #15  |  Usuario: 8  |  Producto: Patatas Fritas  |  Cantidad: 1  |  Fecha: 2026-04-28 06:56:3...) '
+(Pedido #14  |  Usuario: 8  |  Producto: Hamburguesa Completa  |  Cantidad: 1  |  Fecha: 2026-04-28 0...) '
+(Pedido #13  |  Usuario: 15  |  Producto: Bebida Grande  |  Cantidad: 1  |  Fecha: 2025-12-15 07:25:3...) '
+(Pedido #12  |  Usuario: 14  |  Producto: Hamburguesa Completa  |  Cantidad: 1  |  Fecha: 2025-12-12 ...) '
+(Pedido #11  |  Usuario: 14  |  Producto: Patatas Fritas  |  Cantidad: 1  |  Fecha: 2025-12-12 12:11:...) '
+(Pedido #10  |  Usuario: 14  |  Producto: Hamburguesa Completa  |  Cantidad: 1  |  Fecha: 2025-12-12 ...) '
+(Pedido #9  |  Usuario: 7  |  Producto: Patatas Fritas  |  Cantidad: 1  |  Fecha: 2025-12-12 11:23:00...) '
+(Pedido #8  |  Usuario: 7  |  Producto: Hamburguesa Completa  |  Cantidad: 1  |  Fecha: 2025-12-12 11...) '
+(Pedido #7  |  Usuario: 7  |  Producto: Patatas Fritas  |  Cantidad: 12  |  Fecha: 2025-12-12 10:52:4...) '
+(Pedido #6  |  Usuario: 7  |  Producto: Hamburguesa Completa  |  Cantidad: 12  |  Fecha: 2025-12-12 1...) '
+(Pedido #5  |  Usuario: 11  |  Producto: Patatas Fritas  |  Cantidad: 1  |  Fecha: 2025-12-12 10:11:4...) '
+(Pedido #4  |  Usuario: 11  |  Producto: Hamburguesa Completa  |  Cantidad: 1  |  Fecha: 2025-12-12 1...) '
+(Pedido #3  |  Usuario: 7  |  Producto: Patatas Fritas  |  Cantidad: 1  |  Fecha: 2025-12-12 10:01:04...) '
+(Pedido #2  |  Usuario: 7  |  Producto: Hamburguesa Completa  |  Cantidad: 1  |  Fecha: 2025-12-12 10...) '
+(Pedido #1  |  Usuario: 7  |  Producto: Hamburguesa Completa  |  Cantidad: 12  |  Fecha: 2025-12-12 0...) '
+(--------------------------------------------------) '
+(Total de pedidos: 21) '
+ET
+
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000244 00000 n 
+0000002767 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+2835
+%%EOF
