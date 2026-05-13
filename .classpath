@@ -9,5 +9,6 @@
 	<classpathentry kind="lib" path="E:/flatlaf-extras-3.4.1-javadoc.jar"/>
 	<classpathentry kind="lib" path="E:/flatlaf-3.4.1.jar"/>
 	<classpathentry kind="lib" path="E:/postgresql-42.7.8.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ivanl_4gnxah8/Downloads/itextpdf-5.5.13.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
