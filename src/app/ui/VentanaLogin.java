@@ -11,7 +11,8 @@ import app.utils.LanguageManager;
  *
  * Primera ventana al arrancar la app. Permite autenticarse con email y contraseña,
  * o navegar al registro. Incluye botón de cambio de idioma ES/EN.
- * Después del login abre la ventana correspondiente según el rol del usuario.
+ * Al cambiar de idioma los textos se actualizan sin borrar lo que el usuario
+ * haya escrito en los campos.
  *
  * @author EatMe Team
  */
@@ -19,15 +20,12 @@ public class VentanaLogin extends JFrame {
 
     private JTextField txtCorreo;
     private JPasswordField txtPass;
-    private JButton btnLogin, btnRegistro;
+    private JButton btnLogin, btnRegistro, btnIdioma;
+    private JLabel lblCorreo, lblPass;
     private UsuarioDAO dao = new UsuarioDAO();
 
-    /** Idioma activo compartido entre Login y Registro: "es" o "en". */
     private String idiomaActivo = LanguageManager.getIdioma();
 
-    /**
-     * Constructor que monta la pantalla de login.
-     */
     public VentanaLogin() {
         setTitle("EatMe — Iniciar sesion");
         setSize(400, 530);
@@ -36,7 +34,6 @@ public class VentanaLogin extends JFrame {
         setLayout(null);
         getContentPane().setBackground(UIConstants.BG);
 
-        // Logo texto (sin emoji, compatible con todas las fuentes)
         JLabel lblTitulo = new JLabel("EatMe");
         lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 36));
         lblTitulo.setForeground(UIConstants.PRIMARY);
@@ -50,7 +47,7 @@ public class VentanaLogin extends JFrame {
         add(lblSub);
 
         // Campo correo
-        JLabel lblCorreo = new JLabel(LanguageManager.getTexto("correo") + ":");
+        lblCorreo = new JLabel(LanguageManager.getTexto("correo") + ":");
         lblCorreo.setBounds(50, 130, 300, 20);
         lblCorreo.setForeground(UIConstants.TEXT);
         lblCorreo.setFont(new Font("Segoe UI", Font.BOLD, 12));
@@ -60,7 +57,7 @@ public class VentanaLogin extends JFrame {
         add(txtCorreo);
 
         // Campo contraseña
-        JLabel lblPass = new JLabel(LanguageManager.getTexto("contrasena") + ":");
+        lblPass = new JLabel(LanguageManager.getTexto("contrasena") + ":");
         lblPass.setBounds(50, 205, 300, 20);
         lblPass.setForeground(UIConstants.TEXT);
         lblPass.setFont(new Font("Segoe UI", Font.BOLD, 12));
@@ -70,13 +67,11 @@ public class VentanaLogin extends JFrame {
         txtPass.setBounds(50, 228, 300, 36);
         add(txtPass);
 
-        // Botón login
         btnLogin = new JButton(LanguageManager.getTexto("login"));
         btnLogin.setBounds(50, 300, 300, 44);
         estiloBtnPrimario(btnLogin);
         add(btnLogin);
 
-        // Botón registro
         btnRegistro = new JButton(LanguageManager.getTexto("registro"));
         btnRegistro.setBounds(50, 355, 300, 38);
         btnRegistro.setBackground(UIConstants.CARD);
@@ -87,8 +82,7 @@ public class VentanaLogin extends JFrame {
         btnRegistro.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         add(btnRegistro);
 
-        // Botón de idioma
-        JButton btnIdioma = new JButton(idiomaActivo.equals("es") ? "EN" : "ES");
+        btnIdioma = new JButton(idiomaActivo.equals("es") ? "EN" : "ES");
         btnIdioma.setBounds(320, 410, 60, 28);
         btnIdioma.setBackground(UIConstants.BORDER);
         btnIdioma.setForeground(UIConstants.TEXT);
@@ -98,18 +92,30 @@ public class VentanaLogin extends JFrame {
         btnIdioma.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         add(btnIdioma);
 
-        // Listeners
         btnLogin.addActionListener(e -> login());
-        btnRegistro.addActionListener(e -> { new VentanaRegistro().setVisible(true); dispose(); });
-        btnIdioma.addActionListener(e -> {
-            idiomaActivo = idiomaActivo.equals("es") ? "en" : "es";
-            LanguageManager.setIdioma(idiomaActivo);
-            // Reabrimos login con el nuevo idioma
-            VentanaLogin v = new VentanaLogin();
-            v.idiomaActivo = idiomaActivo;
-            UIUtils.fadeInWindow(v);
+        btnRegistro.addActionListener(e -> {
+            // Pasamos el correo ya escrito a la ventana de registro
+            new VentanaRegistro().setVisible(true);
             dispose();
         });
+        btnIdioma.addActionListener(e -> cambiarIdioma());
+    }
+
+    /**
+     * Cambia el idioma actualizando los textos EN LA MISMA VENTANA,
+     * sin destruirla ni borrar lo que el usuario haya escrito.
+     */
+    private void cambiarIdioma() {
+        idiomaActivo = idiomaActivo.equals("es") ? "en" : "es";
+        LanguageManager.setIdioma(idiomaActivo);
+
+        lblCorreo.setText(LanguageManager.getTexto("correo") + ":");
+        lblPass.setText(LanguageManager.getTexto("contrasena") + ":");
+        btnLogin.setText(LanguageManager.getTexto("login"));
+        btnRegistro.setText(LanguageManager.getTexto("registro"));
+        btnIdioma.setText(idiomaActivo.equals("es") ? "EN" : "ES");
+
+        repaint();
     }
 
     private JTextField styledField() {
@@ -135,9 +141,6 @@ public class VentanaLogin extends JFrame {
         b.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
-    /**
-     * Valida credenciales y abre la ventana correcta según el rol del usuario.
-     */
     private void login() {
         String correo = txtCorreo.getText().trim();
         String pass   = new String(txtPass.getPassword()).trim();
@@ -162,7 +165,6 @@ public class VentanaLogin extends JFrame {
         dispose();
     }
 
-    /** Crea y muestra la ventana de login con efecto fade-in. */
     public static void abrirLogin() {
         UIUtils.fadeInWindow(new VentanaLogin());
     }

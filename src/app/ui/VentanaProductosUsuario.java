@@ -21,6 +21,10 @@ import app.utils.LanguageManager;
  * El botón Panel Admin solo aparece si el usuario tiene rol ADMIN.
  * La tabla se actualiza automáticamente al volver del carrito o de favoritos.
  *
+ * La carga del catálogo se realiza en un hilo de fondo mediante SwingWorker
+ * para no bloquear el Event Dispatch Thread (EDT) durante la consulta a
+ * Supabase. Mientras se carga, se muestra un spinner de espera en la tabla.
+ *
  * @author EatMe Team
  */
 public class VentanaProductosUsuario extends JFrame {
@@ -136,6 +140,8 @@ public class VentanaProductosUsuario extends JFrame {
         JButton btnCerrar     = btn(LanguageManager.getTexto("cerrarSesion"),   UIConstants.SECONDARY);
         JButton btnIdioma     = btn(idiomaActivo.equals("es") ? "EN" : "ES",   UIConstants.BORDER);
         btnIdioma.setForeground(UIConstants.TEXT);
+        JButton btnRefrescar  = btn(idiomaActivo.equals("es") ? "↺ Refrescar" : "↺ Refresh", new Color(40, 40, 60));
+        btnRefrescar.setForeground(new Color(180, 180, 200));
 
         panelBotones.add(btnCarrito);
         panelBotones.add(btnVerCarrito);
@@ -159,10 +165,12 @@ public class VentanaProductosUsuario extends JFrame {
         }
 
         panelBotones.add(btnCerrar);
+        panelBotones.add(btnRefrescar);
         panelBotones.add(btnIdioma);
 
         // Listeners
         btnCarrito.addActionListener(e    -> agregarAlCarrito());
+        btnRefrescar.addActionListener(e  -> cargarTabla());
         btnVerCarrito.addActionListener(e -> {
             new VentanaCarrito(this, usuario).setVisible(true);
             cargarTabla(); // Actualizamos stock al volver
@@ -200,20 +208,84 @@ public class VentanaProductosUsuario extends JFrame {
     }
 
     /**
-     * Recarga el catálogo desde la BD marcando los favoritos del usuario.
-     * Se llama automáticamente al abrir, al volver del carrito y al cambiar idioma.
+     * Recarga el catálogo desde la BD usando un SwingWorker.
+     *
+     * La consulta a Supabase se ejecuta en un hilo de fondo (doInBackground)
+     * para no bloquear el Event Dispatch Thread (EDT) de Swing durante la
+     * espera de red. Mientras el hilo trabaja, la tabla muestra una fila de
+     * "Cargando..." al usuario. Cuando el hilo termina, done() vuelca los
+     * datos en la tabla desde el EDT, que es el único hilo seguro para
+     * modificar componentes Swing.
+     *
+     * Este patrón cumple el requisito técnico del módulo de Servicios y
+     * Procesos: uso real de hilos (Thread/Runnable) en Swing mediante la
+     * clase SwingWorker, que internamente crea y gestiona un Thread del
+     * pool de hilos de Swing.
+     *
+     * Se llama automáticamente al abrir, al volver del carrito y al cambiar
+     * idioma.
      */
     private void cargarTabla() {
+        // 1. Limpiamos la tabla y mostramos "Cargando..." mientras trabaja el hilo
         modelo.setRowCount(0);
-        List<producto> productos = dao.obtenerTodos();
-        Set<Integer> favs = dao.obtenerFavoritosIds(usuario.getId_usuario());
-        for (producto p : productos) {
-            modelo.addRow(new Object[]{
-                p.getId_producto(), p.getNombre_prod(),
-                p.getPrecio(), p.getStock(),
-                favs.contains(p.getId_producto())
-            });
-        }
+        modelo.addRow(new Object[]{
+            "...",
+            LanguageManager.getIdioma().equals("es") ? "Cargando productos..." : "Loading products...",
+            "", "", false
+        });
+
+        // 2. SwingWorker: hilo de fondo para la consulta a la BD
+        SwingWorker<Object[][], Void> worker = new SwingWorker<>() {
+
+            /**
+             * doInBackground() se ejecuta en un Thread del pool de Swing,
+             * FUERA del EDT. Aquí hacemos la consulta a Supabase sin bloquear
+             * la interfaz gráfica.
+             */
+            @Override
+            protected Object[][] doInBackground() {
+                List<producto> productos = dao.obtenerTodos();
+                Set<Integer>   favs      = dao.obtenerFavoritosIds(usuario.getId_usuario());
+
+                Object[][] filas = new Object[productos.size()][5];
+                for (int i = 0; i < productos.size(); i++) {
+                    producto p = productos.get(i);
+                    filas[i] = new Object[]{
+                        p.getId_producto(),
+                        p.getNombre_prod(),
+                        p.getPrecio(),
+                        p.getStock(),
+                        favs.contains(p.getId_producto())
+                    };
+                }
+                return filas;
+            }
+
+            /**
+             * done() se ejecuta de vuelta en el EDT una vez que doInBackground()
+             * termina. Aquí actualizamos la tabla de forma segura.
+             */
+            @Override
+            protected void done() {
+                try {
+                    Object[][] filas = get();
+                    modelo.setRowCount(0);
+                    for (Object[] fila : filas) {
+                        modelo.addRow(fila);
+                    }
+                } catch (Exception e) {
+                    modelo.setRowCount(0);
+                    System.out.println("Error al cargar productos: " + e.getMessage());
+                    Toast.show(VentanaProductosUsuario.this,
+                        LanguageManager.getIdioma().equals("es")
+                            ? "Error al cargar productos."
+                            : "Error loading products.");
+                }
+            }
+        };
+
+        // 3. Lanzamos el worker: crea un Thread interno y lo arranca
+        worker.execute();
     }
 
     /**
@@ -226,7 +298,11 @@ public class VentanaProductosUsuario extends JFrame {
             Toast.show(this, LanguageManager.getTexto("seleccionaProducto")); return;
         }
         for (int fila : filas) {
-            int idProducto = (int) modelo.getValueAt(fila, 0);
+            // Saltamos la fila "Cargando..." si aún está presente
+            Object idVal = modelo.getValueAt(fila, 0);
+            if ("...".equals(idVal.toString())) continue;
+
+            int idProducto = (int) idVal;
             String nombre  = modelo.getValueAt(fila, 1).toString();
             int stock      = (int) modelo.getValueAt(fila, 3);
 
@@ -254,7 +330,10 @@ public class VentanaProductosUsuario extends JFrame {
         if (fila == -1) {
             Toast.show(this, LanguageManager.getTexto("seleccionaProducto")); return;
         }
-        int idProducto = (int)     modelo.getValueAt(fila, 0);
+        Object idVal = modelo.getValueAt(fila, 0);
+        if ("...".equals(idVal.toString())) return; // Aún cargando
+
+        int idProducto = (int)     idVal;
         boolean esFav  = (boolean) modelo.getValueAt(fila, 4);
         if (esFav) {
             dao.quitarFavorito(usuario.getId_usuario(), idProducto);

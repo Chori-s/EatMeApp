@@ -30,7 +30,7 @@ endobj
 >>
 endobj
 6 0 obj
-<< /Length 2378 >>
+<< /Length 2386 >>
 stream
 BT
 /F1 18 Tf
@@ -42,6 +42,38 @@ BT
 0 -15 Td
 (------------------------------------------------------------) Tj
 0 -20 Td
+(Pedido #26 | Usuario: 12) Tj
+0 -16 Td
+(Producto: Gofraco del pueblo \(casero\)) Tj
+0 -16 Td
+(Cantidad: 2 | Fecha: 2026-05-14 09:57:10.033) Tj
+0 -16 Td
+(---------------------------------------------) Tj
+0 -16 Td
+(Pedido #25 | Usuario: 10) Tj
+0 -16 Td
+(Producto: Hamburguesa Completa) Tj
+0 -16 Td
+(Cantidad: 1 | Fecha: 2026-05-14 09:49:53.794) Tj
+0 -16 Td
+(---------------------------------------------) Tj
+0 -16 Td
+(Pedido #24 | Usuario: 10) Tj
+0 -16 Td
+(Producto: Bebida Grande) Tj
+0 -16 Td
+(Cantidad: 1 | Fecha: 2026-05-14 09:49:53.794) Tj
+0 -16 Td
+(---------------------------------------------) Tj
+0 -16 Td
+(Pedido #23 | Usuario: 10) Tj
+0 -16 Td
+(Producto: Bebida Grande) Tj
+0 -16 Td
+(Cantidad: 1 | Fecha: 2026-05-14 09:49:25.759) Tj
+0 -16 Td
+(---------------------------------------------) Tj
+0 -16 Td
 (Pedido #22 | Usuario: 9) Tj
 0 -16 Td
 (Producto: Patatas Fritas) Tj
@@ -96,6 +128,28 @@ BT
 0 -16 Td
 (Cantidad: 1 | Fecha: 2026-04-28 06:56:33.465699) Tj
 0 -16 Td
+ET
+BT
+/F1 7 Tf
+250 20 Td
+(Pagina 1 de 3) Tj
+ET
+
+endstream
+endobj
+7 0 obj
+<< /Length 2338 >>
+stream
+BT
+/F1 18 Tf
+30 810 Td
+(Pedidos EatMe) Tj
+/F1 12 Tf
+0 -20 Td
+(Generado por EatMe App) Tj
+0 -15 Td
+(------------------------------------------------------------) Tj
+0 -20 Td
 (---------------------------------------------) Tj
 0 -16 Td
 (Pedido #15 | Usuario: 8) Tj
@@ -128,28 +182,6 @@ BT
 0 -16 Td
 (Cantidad: 1 | Fecha: 2025-12-12 12:16:52.0) Tj
 0 -16 Td
-ET
-BT
-/F1 7 Tf
-250 20 Td
-(Pagina 1 de 3) Tj
-ET
-
-endstream
-endobj
-7 0 obj
-<< /Length 2330 >>
-stream
-BT
-/F1 18 Tf
-30 810 Td
-(Pedidos EatMe) Tj
-/F1 12 Tf
-0 -20 Td
-(Generado por EatMe App) Tj
-0 -15 Td
-(------------------------------------------------------------) Tj
-0 -20 Td
 (---------------------------------------------) Tj
 0 -16 Td
 (Pedido #11 | Usuario: 14) Tj
@@ -204,6 +236,28 @@ BT
 0 -16 Td
 (Producto: Patatas Fritas) Tj
 0 -16 Td
+ET
+BT
+/F1 7 Tf
+250 20 Td
+(Pagina 2 de 3) Tj
+ET
+
+endstream
+endobj
+8 0 obj
+<< /Length 1229 >>
+stream
+BT
+/F1 18 Tf
+30 810 Td
+(Pedidos EatMe) Tj
+/F1 12 Tf
+0 -20 Td
+(Generado por EatMe App) Tj
+0 -15 Td
+(------------------------------------------------------------) Tj
+0 -20 Td
 (Cantidad: 1 | Fecha: 2025-12-12 10:11:44.0) Tj
 0 -16 Td
 (---------------------------------------------) Tj
@@ -236,35 +290,13 @@ BT
 0 -16 Td
 (Producto: Hamburguesa Completa) Tj
 0 -16 Td
-ET
-BT
-/F1 7 Tf
-250 20 Td
-(Pagina 2 de 3) Tj
-ET
-
-endstream
-endobj
-8 0 obj
-<< /Length 438 >>
-stream
-BT
-/F1 18 Tf
-30 810 Td
-(Pedidos EatMe) Tj
-/F1 12 Tf
-0 -20 Td
-(Generado por EatMe App) Tj
-0 -15 Td
-(------------------------------------------------------------) Tj
-0 -20 Td
 (Cantidad: 12 | Fecha: 2025-12-12 09:49:45.0) Tj
 0 -16 Td
 (---------------------------------------------) Tj
 0 -16 Td
 (--------------------------------------------------) Tj
 0 -16 Td
-(Total de pedidos: 22) Tj
+(Total de pedidos: 26) Tj
 0 -16 Td
 ET
 BT
@@ -289,11 +321,11 @@ xref
 0000000254 00000 n 
 0000000380 00000 n 
 0000000506 00000 n 
-0000002936 00000 n 
-0000005318 00000 n 
-0000005807 00000 n 
+0000002944 00000 n 
+0000005334 00000 n 
+0000006615 00000 n 
 trailer
 << /Size 10 /Root 1 0 R >>
 startxref
-5877
+6685
 %%EOF
