@@ -140,7 +140,7 @@ public class VentanaProductosUsuario extends JFrame {
         JButton btnCerrar     = btn(LanguageManager.getTexto("cerrarSesion"),   UIConstants.SECONDARY);
         JButton btnIdioma     = btn(idiomaActivo.equals("es") ? "EN" : "ES",   UIConstants.BORDER);
         btnIdioma.setForeground(UIConstants.TEXT);
-        JButton btnRefrescar  = btn(idiomaActivo.equals("es") ? "↺ Refrescar" : "↺ Refresh", new Color(40, 40, 60));
+        JButton btnRefrescar  = btn(idiomaActivo.equals("es") ? " Refrescar" : " Refresh", new Color(40, 40, 60));
         btnRefrescar.setForeground(new Color(180, 180, 200));
 
         panelBotones.add(btnCarrito);
@@ -227,12 +227,15 @@ public class VentanaProductosUsuario extends JFrame {
      */
     private void cargarTabla() {
         // 1. Limpiamos la tabla y mostramos "Cargando..." mientras trabaja el hilo
-        modelo.setRowCount(0);
-        modelo.addRow(new Object[]{
-            "...",
-            LanguageManager.getIdioma().equals("es") ? "Cargando productos..." : "Loading products...",
-            "", "", false
-        });
+    	modelo.addRow(new Object[]{
+    		    "...",
+    		    LanguageManager.getIdioma().equals("es")
+    		        ? "Cargando productos..."
+    		        : "Loading products...",
+    		    0.0,
+    		    0,
+    		    false
+    		});
 
         // 2. SwingWorker: hilo de fondo para la consulta a la BD
         SwingWorker<Object[][], Void> worker = new SwingWorker<>() {

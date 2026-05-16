@@ -100,7 +100,7 @@ public class VentanaRegistro extends JFrame {
         add(btnVolver);
 
         btnIdioma = new JButton(idiomaActivo.equals("es") ? "EN" : "ES");
-        btnIdioma.setBounds(320, 480, 60, 28);
+        btnIdioma.setBounds(180, 465, 60, 28);
         btnIdioma.setBackground(UIConstants.BORDER);
         btnIdioma.setForeground(UIConstants.TEXT);
         btnIdioma.setFocusPainted(false);

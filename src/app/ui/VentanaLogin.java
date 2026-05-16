@@ -29,6 +29,7 @@ public class VentanaLogin extends JFrame {
     public VentanaLogin() {
         setTitle("EatMe — Iniciar sesion");
         setSize(400, 530);
+        setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(null);
@@ -83,7 +84,7 @@ public class VentanaLogin extends JFrame {
         add(btnRegistro);
 
         btnIdioma = new JButton(idiomaActivo.equals("es") ? "EN" : "ES");
-        btnIdioma.setBounds(320, 410, 60, 28);
+        btnIdioma.setBounds(170, 410, 60, 28);
         btnIdioma.setBackground(UIConstants.BORDER);
         btnIdioma.setForeground(UIConstants.TEXT);
         btnIdioma.setFocusPainted(false);
