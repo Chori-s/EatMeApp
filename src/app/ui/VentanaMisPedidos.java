@@ -21,7 +21,7 @@ import app.utils.LanguageManager;
  * NOTA: el Toast de "sin pedidos" se lanza con SwingUtilities.invokeLater
  * para evitar IllegalComponentStateException antes de que la ventana sea visible.
  *
- * @author EatMe Team
+ * @author Iván
  */
 public class VentanaMisPedidos extends JFrame {
 

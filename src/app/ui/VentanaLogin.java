@@ -14,7 +14,7 @@ import app.utils.LanguageManager;
  * Al cambiar de idioma los textos se actualizan sin borrar lo que el usuario
  * haya escrito en los campos.
  *
- * @author EatMe Team
+ * @author Iván
  */
 public class VentanaLogin extends JFrame {
 

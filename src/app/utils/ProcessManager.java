@@ -15,7 +15,7 @@ import java.util.List;
  * generado con el visor predeterminado del sistema, cumpliendo el requisito
  * técnico del módulo de procesos.
  *
- * @author EatMe Team
+ * @author Iván
  */
 public class ProcessManager {
 

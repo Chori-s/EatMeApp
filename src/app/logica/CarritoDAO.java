@@ -13,7 +13,7 @@ import app.bbdd.ConexionBD;
  * Si el usuario añade el mismo producto dos veces, se suma la cantidad.
  * Cada método obtiene la conexión con ConexionBD.getConexion() para evitar NPE.
  *
- * @author EatMe Team
+ * @author Iván
  */
 public class CarritoDAO {
 

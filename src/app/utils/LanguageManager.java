@@ -24,7 +24,7 @@ import java.util.PropertyResourceBundle;
  *   LanguageManager.setIdioma("en")     → cambia a inglés
  *   LanguageManager.getIdioma()         → "es" o "en"
  *
- * @author EatMe Team
+ * @author Iván
  */
 public class LanguageManager {
 

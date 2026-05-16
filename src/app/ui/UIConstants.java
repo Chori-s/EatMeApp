@@ -9,7 +9,7 @@ import java.awt.*;
  * con acentos en violeta/morado, muy usado en apps actuales de delivery y food tech.
  * Cualquier cambio de diseño solo requiere editar esta clase.
  *
- * @author EatMe Team
+ * @author Iván
  */
 public class UIConstants {
 

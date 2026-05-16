@@ -14,7 +14,7 @@ import app.utils.LanguageManager;
  * ADMIN, aparece un botón para acceder al panel de administración.
  * Incluye botón de idioma ES/EN que reabre la ventana en el nuevo idioma.
  *
- * @author EatMe Team
+ * @author Iván
  */
 public class VentanaMiPerfil extends JFrame {
 

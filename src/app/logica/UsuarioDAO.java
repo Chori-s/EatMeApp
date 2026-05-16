@@ -13,7 +13,7 @@ import app.bbdd.ConexionBD;
  * ConexionBD.getConexion(). Esto evita el NullPointerException que ocurría
  * cuando la conexión fallaba en el constructor y quedaba guardada como null.
  *
- * @author EatMe Team
+ * @author Iván
  */
 public class UsuarioDAO {
 

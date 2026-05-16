@@ -11,7 +11,7 @@ import javax.swing.*;
  * fade-in (aparición gradual) para hacer las transiciones entre ventanas
  * más suaves y agradables para el usuario.
  *
- * @author EatMe Team
+ * @author Iván
  */
 public class UIUtils {
 

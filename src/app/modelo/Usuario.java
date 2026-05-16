@@ -11,7 +11,7 @@ package app.modelo;
  * La clase incluye varios constructores para los distintos contextos en los
  * que se crea un Usuario (login completo, registro, consulta admin...).
  *
- * @author EatMe Team
+ * @author Iván
  */
 public class Usuario {
 

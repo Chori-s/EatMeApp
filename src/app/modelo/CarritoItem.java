@@ -8,7 +8,7 @@ package app.modelo;
  * en CarritoDAO. De esta forma la vista tiene todo lo necesario sin hacer
  * consultas adicionales.
  *
- * @author EatMe Team
+ * @author Iván
  */
 public class CarritoItem {
 

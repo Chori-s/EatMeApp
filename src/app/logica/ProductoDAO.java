@@ -14,7 +14,7 @@ import app.bbdd.ConexionBD;
  * Cada método obtiene la conexión en el momento de ejecutarse con
  * ConexionBD.getConexion() para evitar NPE por conexión nula en el constructor.
  *
- * @author EatMe Team
+ * @author Iván
  */
 public class ProductoDAO {
 

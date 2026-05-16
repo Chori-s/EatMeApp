@@ -13,7 +13,7 @@ import java.awt.*;
  * esta sea visible (getLocationOnScreen lanzaría IllegalComponentStateException).
  * Usar SwingUtilities.invokeLater() si es necesario mostrar un Toast en la carga.
  *
- * @author EatMe Team
+ * @author Iván
  */
 public class Toast {
 

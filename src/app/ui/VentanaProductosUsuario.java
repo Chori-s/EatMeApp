@@ -25,7 +25,7 @@ import app.utils.LanguageManager;
  * para no bloquear el Event Dispatch Thread (EDT) durante la consulta a
  * Supabase. Mientras se carga, se muestra un spinner de espera en la tabla.
  *
- * @author EatMe Team
+ * @author Iván
  */
 public class VentanaProductosUsuario extends JFrame {
 

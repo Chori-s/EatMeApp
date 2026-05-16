@@ -23,7 +23,7 @@ import app.utils.LanguageManager;
  * MISMO timestamp para que en "Mis Pedidos" aparezcan como un único
  * pedido agrupado con su ticket conjunto, en vez de uno por producto.
  *
- * @author EatMe Team
+ * @author Iván
  */
 public class VentanaCarrito extends JDialog {
 

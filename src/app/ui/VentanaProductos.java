@@ -14,6 +14,26 @@ public class VentanaProductos extends JFrame {
     private JTextField txtNombre, txtPrecio, txtStock;
     private ProductoDAO dao = new ProductoDAO();
 
+    /**
+     * VentanaProductos — Pantalla de gestión de productos en EatMe.
+     *
+     * Permite al administrador visualizar el catálogo completo de productos
+     * en una tabla, añadir nuevos productos introduciendo nombre, precio y stock,
+     * y eliminar productos existentes seleccionándolos en la tabla.
+     *
+     * Nota: esta clase corresponde a una versión preliminar del módulo de
+     * administración. La gestión de productos en la versión final se integra
+     * dentro del panel de pestañas de VentanaAdminControl.
+     *
+     * @author Iván
+     */
+    
+    /**
+     * Constructor principal de VentanaProductos.
+     *
+     * Inicializa la interfaz con el panel superior de formulario,
+     * la tabla de productos y los botones de acción.
+     */
     public VentanaProductos() {
         setTitle("Gestión de Productos - EatMe");
         setSize(800, 550);
@@ -68,6 +88,11 @@ public class VentanaProductos extends JFrame {
         cargarTabla();
     }
 
+    /**
+     * Carga todos los productos desde la base de datos y los muestra
+     * en la tabla con columnas ID, Nombre, Precio y Stock.
+     * Limpia las filas existentes antes de recargar.
+     */
     private void cargarTabla() {
         modelo.setRowCount(0);
         List<producto> productos = dao.obtenerTodos();
@@ -76,6 +101,11 @@ public class VentanaProductos extends JFrame {
         }
     }
 
+    /**
+     * Valida los campos del formulario y añade un nuevo producto
+     * a la base de datos si el nombre no existe previamente.
+     * Recarga la tabla y limpia los campos tras la inserción.
+     */
     private void agregarProducto() {
         String nombre = txtNombre.getText();
         double precio;
@@ -98,6 +128,11 @@ public class VentanaProductos extends JFrame {
         JOptionPane.showMessageDialog(this,"Producto agregado correctamente");
     }
 
+    /**
+     * Elimina el producto seleccionado en la tabla.
+     * Muestra un aviso si no hay ninguna fila seleccionada.
+     * Recarga la tabla tras la eliminación.
+     */
     private void eliminarProducto() {
         int fila = tabla.getSelectedRow();
         if(fila == -1){
@@ -110,12 +145,22 @@ public class VentanaProductos extends JFrame {
         JOptionPane.showMessageDialog(this,"Producto eliminado correctamente");
     }
 
+    /**
+     * Limpia los campos de texto del formulario de entrada
+     * tras una inserción correcta.
+     */
     private void limpiarCampos() {
         txtNombre.setText("");
         txtPrecio.setText("");
         txtStock.setText("");
     }
 
+    /**
+     * Método main para pruebas en desarrollo.
+     * Aplica FlatDarkLaf y lanza la ventana directamente sin pasar por el login.
+     *
+     * @param args Argumentos de línea de comandos (no utilizados).
+     */
     public static void main(String[] args) {
         try { UIManager.setLookAndFeel(new com.formdev.flatlaf.FlatDarkLaf()); }
         catch(Exception ex){ ex.printStackTrace(); }

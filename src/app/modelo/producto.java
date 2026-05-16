@@ -12,7 +12,7 @@ package app.modelo;
  * inicio del proyecto. En Java la convención es PascalCase para clases,
  * pero lo mantenemos así para no romper las referencias existentes.
  *
- * @author EatMe Team
+ * @author Iván
  */
 public class producto {
 

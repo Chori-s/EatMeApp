@@ -17,7 +17,7 @@ import app.utils.LanguageManager;
  * directamente al carrito sin volver al catálogo.
  * Incluye botón de idioma ES/EN que reabre el diálogo en el nuevo idioma.
  *
- * @author EatMe Team
+ * @author Iván
  */
 public class VentanaMisFavoritos extends JDialog {
 

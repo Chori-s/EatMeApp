@@ -16,7 +16,7 @@ import javax.swing.*;
  * Thread (EDT), que es el único hilo seguro para Swing. Esto también cumple
  * con el requisito técnico de uso de hilos (Thread/Runnable) del proyecto.
  *
- * @author EatMe Team
+ * @author Iván
  */
 public class Main {
 

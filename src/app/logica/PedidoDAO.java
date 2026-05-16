@@ -15,7 +15,7 @@ import app.bbdd.ConexionBD;
  * el mismo timestamp, de forma que en VentanaMisPedidos se pueden agrupar y mostrar
  * un ticket conjunto por sesión de compra, en vez de un ticket por producto.
  *
- * @author EatMe Team
+ * @author Iván
  */
 public class PedidoDAO {
 

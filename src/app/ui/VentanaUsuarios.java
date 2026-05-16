@@ -7,6 +7,21 @@ import java.util.List;
 import app.logica.UsuarioDAO;
 import app.modelo.Usuario;
 
+/**
+ * VentanaUsuarios — Pantalla de gestión de usuarios en EatMe.
+ *
+ * Permite al administrador visualizar todos los usuarios registrados
+ * en una tabla, añadir nuevos usuarios, actualizar los datos de uno
+ * existente y eliminarlo. Al hacer clic sobre una fila de la tabla,
+ * los datos del usuario seleccionado se cargan automáticamente en el
+ * formulario para facilitar su edición.
+ *
+ * Nota: esta clase corresponde a una versión preliminar del módulo de
+ * administración. La gestión de usuarios en la versión final se integra
+ * dentro del panel de pestañas de VentanaAdminControl.
+ *
+ * @author Iván
+ */
 public class VentanaUsuarios extends JFrame {
 
     private UsuarioDAO dao = new UsuarioDAO();
@@ -16,6 +31,14 @@ public class VentanaUsuarios extends JFrame {
     private JPasswordField txtContrasena;
     private JButton btnAgregar, btnActualizar, btnEliminar, btnCargar, btnVolver, btnCerrarSesion;
 
+    /**
+     * Constructor principal de VentanaUsuarios.
+     *
+     * Inicializa la tabla de usuarios, el formulario inferior con los
+     * campos de entrada y los botones de acción. Registra un MouseListener
+     * sobre la tabla para cargar los datos del usuario seleccionado
+     * en el formulario al hacer clic.
+     */
     public VentanaUsuarios() {
         setTitle("Gestión de Usuarios - EatMe");
         setSize(800, 500);
@@ -85,6 +108,11 @@ public class VentanaUsuarios extends JFrame {
         });
     }
 
+    /**
+     * Carga todos los usuarios desde la base de datos y los muestra
+     * en la tabla con columnas ID, Nombre, Email y Contraseña.
+     * Limpia las filas existentes antes de recargar.
+     */
     private void cargarUsuarios() {
         modelo.setRowCount(0);
         List<Usuario> lista = dao.obtenerTodos();
@@ -93,6 +121,11 @@ public class VentanaUsuarios extends JFrame {
         }
     }
 
+    /**
+     * Valida los campos del formulario y añade un nuevo usuario
+     * a la base de datos si el email no está ya registrado.
+     * Recarga la tabla y limpia los campos tras la inserción.
+     */
     private void agregarUsuario() {
         if(txtNombre.getText().isEmpty() || txtEmail.getText().isEmpty() || txtContrasena.getText().isEmpty()){
             JOptionPane.showMessageDialog(this,"Todos los campos son obligatorios");
@@ -108,6 +141,11 @@ public class VentanaUsuarios extends JFrame {
         limpiarCampos();
     }
 
+    /**
+     * Actualiza los datos del usuario seleccionado en la tabla
+     * con los valores introducidos en el formulario.
+     * Muestra un aviso si no hay ninguna fila seleccionada.
+     */
     private void actualizarUsuario() {
         int fila = tabla.getSelectedRow();
         if(fila<0){
@@ -121,6 +159,11 @@ public class VentanaUsuarios extends JFrame {
         limpiarCampos();
     }
 
+    /**
+     * Elimina el usuario seleccionado en la tabla.
+     * Muestra un aviso si no hay ninguna fila seleccionada.
+     * Recarga la tabla y limpia los campos tras la eliminación.
+     */
     private void eliminarUsuario() {
         int fila = tabla.getSelectedRow();
         if(fila<0){
@@ -133,12 +176,22 @@ public class VentanaUsuarios extends JFrame {
         limpiarCampos();
     }
 
+    /**
+     * Limpia los campos de texto del formulario de entrada
+     * tras una operación de inserción, actualización o eliminación.
+     */
     private void limpiarCampos() {
         txtNombre.setText("");
         txtEmail.setText("");
         txtContrasena.setText("");
     }
 
+    /**
+     * Método main para pruebas en desarrollo.
+     * Aplica FlatDarkLaf y lanza la ventana directamente sin pasar por el login.
+     *
+     * @param args Argumentos de línea de comandos (no utilizados).
+     */
     public static void main(String[] args) {
         try { UIManager.setLookAndFeel(new com.formdev.flatlaf.FlatDarkLaf()); }
         catch(Exception ex){ ex.printStackTrace(); }

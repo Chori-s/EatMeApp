@@ -10,6 +10,21 @@ import app.modelo.producto;
 import app.modelo.Pedido;
 import app.modelo.Usuario;
 
+/**
+ * VentanaPedidos — Pantalla de realización de pedidos e historial en EatMe.
+ *
+ * Muestra dos tablas: la primera con los productos disponibles (editable
+ * en la columna de cantidad) y la segunda con el historial de pedidos del
+ * usuario autenticado. Permite confirmar un pedido validando el stock
+ * disponible antes de persistir los datos en la base de datos.
+ *
+ * Nota: esta clase corresponde a una versión preliminar del módulo de pedidos.
+ * La versión final del flujo de compra se gestiona a través de
+ * VentanaProductosUsuario y VentanaCarrito.
+ *
+ * @author Iván
+ */
+
 public class VentanaPedidos extends JFrame {
 
     private JTable tablaProductos;
@@ -20,6 +35,15 @@ public class VentanaPedidos extends JFrame {
     private PedidoDAO pedidoDAO = new PedidoDAO();
     private Usuario usuario;
 
+    /**
+     * Constructor principal de VentanaPedidos.
+     *
+     * Inicializa la interfaz con las dos tablas (productos e historial),
+     * el panel de botones inferior y los listeners de acción.
+     *
+     * @param usuario Usuario autenticado cuyo historial se mostrará.
+     */
+    
     public VentanaPedidos(Usuario usuario) {
         this.usuario = usuario;
 
@@ -69,6 +93,11 @@ public class VentanaPedidos extends JFrame {
         btnConfirmar.addActionListener(e -> confirmarPedido());
     }
 
+    /**
+     * Carga todos los productos disponibles desde la base de datos
+     * y los muestra en la tabla superior con cantidad inicial 0.
+     * Clasifica visualmente los productos según su precio.
+     */
     private void cargarProductos() {
         modeloProductos.setRowCount(0);
         List<producto> productos = productoDAO.obtenerTodos();
@@ -82,6 +111,11 @@ public class VentanaPedidos extends JFrame {
         }
     }
 
+    /**
+     * Carga el historial de pedidos del usuario autenticado desde la base
+     * de datos y los muestra en la tabla inferior con producto, cantidad,
+     * precio y fecha.
+     */
     private void cargarHistorial() {
         modeloHistorial.setRowCount(0);
         List<Pedido> pedidos = pedidoDAO.obtenerPorUsuario(usuario.getId_usuario());
@@ -95,6 +129,14 @@ public class VentanaPedidos extends JFrame {
         }
     }
 
+    /**
+     * Valida y confirma el pedido actual.
+     *
+     * Recorre la tabla de productos comprobando que las cantidades
+     * introducidas no superen el stock disponible. Si la validación
+     * es correcta, inserta los pedidos en la base de datos, actualiza
+     * el stock de cada producto y recarga ambas tablas.
+     */
     private void confirmarPedido() {
         boolean hayCantidad = false;
         for(int i=0;i<modeloProductos.getRowCount();i++){
@@ -132,6 +174,12 @@ public class VentanaPedidos extends JFrame {
         cargarHistorial();
     }
 
+    /**
+     * Método main para pruebas en desarrollo.
+     * Lanza la ventana con un usuario de demostración sin pasar por el login.
+     *
+     * @param args Argumentos de línea de comandos (no utilizados).
+     */
     public static void main(String[] args) {
         Usuario demo = new Usuario(1,"Demo","demo@demo.com","1234");
         SwingUtilities.invokeLater(() -> new VentanaPedidos(demo).setVisible(true));

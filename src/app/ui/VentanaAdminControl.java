@@ -25,7 +25,7 @@ import app.utils.ProcessManager;
  * El nombre del admin es dinámico: viene del objeto Usuario recibido.
  * Las cabeceras de las tablas usan color PRIMARY (visible) en vez de gris.
  *
- * @author EatMe Team
+ * @author Iván
  */
 public class VentanaAdminControl extends JFrame {
 

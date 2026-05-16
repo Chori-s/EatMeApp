@@ -11,7 +11,7 @@ import app.bbdd.ConexionBD;
  * Tabla de relación muchos-a-muchos entre usuarios y productos.
  * Cada método obtiene la conexión con ConexionBD.getConexion() para evitar NPE.
  *
- * @author EatMe Team
+ * @author Iván
  */
 public class FavoritosDAO {
 

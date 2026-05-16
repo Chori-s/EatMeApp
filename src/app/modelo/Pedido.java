@@ -12,7 +12,7 @@ import java.sql.Timestamp;
  * producto obtenidos por JOIN (nombre y precio), necesarios para mostrar
  * el historial y generar el ticket.
  *
- * @author EatMe Team
+ * @author Iván
  */
 public class Pedido {
 

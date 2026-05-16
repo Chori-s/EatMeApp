@@ -16,7 +16,7 @@ import java.sql.SQLException;
  * cerrada o es nula, y lanza una RuntimeException clara si no puede
  * conectar (en vez de devolver null y petar más tarde con un NPE críptico).
  *
- * @author EatMe Team
+ * @author Iván
  */
 public class ConexionBD {
 
